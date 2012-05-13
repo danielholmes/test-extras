@@ -81,8 +81,14 @@ abstract class DoctrineORMTestCase extends PHPUnit_Framework_TestCase implements
     {
         $entityManager = $this->getEntityManager();
         
-        $expectedEntity = $entityManager->merge($expectedEntity);
-        $entity = $entityManager->merge($entity);
+        if ($expectedEntity !== null)
+        {
+            $expectedEntity = $entityManager->merge($expectedEntity);
+        }
+        if ($entity !== null)
+        {
+            $entity = $entityManager->merge($entity);
+        }
         
         $expectedDesc = $this->getEntityDescription($expectedEntity);
         $entityDesc = $this->getEntityDescription($entity);
@@ -98,16 +104,16 @@ abstract class DoctrineORMTestCase extends PHPUnit_Framework_TestCase implements
      */
     private function getEntityDescription($entity)
     {
-        $entityString = null;
+        $entityString = 'NULL';
         if (method_exists($entity, '__toString'))
         {
-            $entityString = (string)$entity;
+            $entityString = sprintf('%s <%s>', (string)$entity, get_class($entity));
         }
-        else
+        else if ($entity !== null)
         {
-            $entityString = spl_object_hash($entity);
+            $entityString = sprintf('%s <%s>', spl_object_hash($entity), get_class($entity));
         }
-        return sprintf('%s <%s>', $entityString, get_class($entity));
+        return $entityString;
     }
     
     /**
