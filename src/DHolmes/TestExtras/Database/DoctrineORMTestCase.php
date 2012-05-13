@@ -45,7 +45,7 @@ abstract class DoctrineORMTestCase extends PHPUnit_Framework_TestCase implements
         // inserted in session. Might be possible if compare contents (excluding id and timestamps?)
         // but that could be innacurate
         $helper->setIsFixturesCacheEnabled(false);
-        return OperationsHelper::createWithCachedSchemaAndFixtures();
+        return $helper;
     }
     
     /** @return EntityManager */
