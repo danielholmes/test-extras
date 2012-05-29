@@ -22,27 +22,27 @@ abstract class DoctrineORMTestCase extends PHPUnit_Framework_TestCase implements
     }
     
     /**
-	 * This is added to help test readability. The idea is that this method would expand all entity
-	 * relations that would otherwise need to be persisted explicitly. e.g.
-	 * 
-	 * protected function getTestEntities()
-	 * {
-	 *     return array(new Person(new Country('Australia')));
-	 * }
-	 *
-	 * protected function extractAllEntitiesToPersist(array $entities)
-	 * {
-	 * 	   $all = array();
+     * This is added to help test readability. The idea is that this method would expand all entity
+     * relations that would otherwise need to be persisted explicitly. e.g.
+     * 
+     * protected function getTestEntities()
+     * {
+     *     return array(new Person(new Country('Australia')));
+     * }
+     *
+     * protected function extractAllEntitiesToPersist(array $entities)
+     * {
+     *        $all = array();
      *     foreach ($entities as $person)
-	 *     {
-	 *         $all[] = $person;
-	 *         $all[] = $person->getCountry();
-	 *     }
-	 *     return $all;
-	 * }
-	 *
-	 * extractAllEntitiesToPersist would usually go in a data source shared abstract test case
-	 * 
+     *     {
+     *         $all[] = $person;
+     *         $all[] = $person->getCountry();
+     *     }
+     *     return $all;
+     * }
+     *
+     * extractAllEntitiesToPersist would usually go in a data source shared abstract test case
+     * 
      * @param array $entities
      * @return array 
      */
